@@ -1,0 +1,32 @@
+# Ignore node_modules in both client and server
+client/node_modules/
+server/node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+
+# Ignore the build output of React app (if any)
+client/build/
+
+# Ignore the build output of Express app (if any)
+server/build/
+
+# Ignore environment configuration files (if any)
+.env
+
+# Ignore IDE/editor specific files
+.vscode/
+.idea/
+
+# Ignore OS specific files
+.DS_Store
+Thumbs.db
+
+# Ignore npm debug log
+npm-debug.log*
+
+# Ignore yarn.lock if you're using npm
+yarn.lock
