@@ -2,18 +2,19 @@ const express = require("express");
 const router = express.Router();
 const FootballData = require("../models/footballSchema");
 
-// Add data to the database
+// 1.5  Add data to the database
 router.post("/add", async (req, res) => {
   try {
     const newData = new FootballData(req.body);
-    await newData.save();
+    const isSaved = await newData.save();
+    // console.log(isSaved);
     res.status(201).send("Record added successfully");
   } catch (error) {
     res.status(400).send("Error adding record");
   }
 });
 
-// Update a record
+// 1.6 Update a single record
 router.post("/update", async (req, res) => {
   const { team, updates } = req.body;
   try {
@@ -30,7 +31,7 @@ router.post("/update", async (req, res) => {
   }
 });
 
-// Delete a record
+// 1.8 Delete a record
 router.post("/delete", async (req, res) => {
   try {
     const { team } = req.body;
@@ -41,7 +42,7 @@ router.post("/delete", async (req, res) => {
   }
 });
 
-// Total games played, draw, and won for a given year
+// 1.7 Total games played, draw, and won for a given year
 router.get("/stats", async (req, res) => {
   try {
     const { year } = req.query;
@@ -54,13 +55,15 @@ router.get("/stats", async (req, res) => {
   }
 });
 
-// First 10 records with wins greater than X
+// 1.9  & 2.5 First 10 records with wins greater than X
 router.get("/top10", async (req, res) => {
   const { minWins } = req.query;
+  // console.log(typeof minWins);
   try {
     const records = await FootballData.find({ win: { $gt: minWins } })
       .limit(10)
       .exec();
+    // console.log(records);
     res.status(200).json(records);
   } catch (error) {
     res.status(400).send("Error fetching records");
@@ -70,6 +73,7 @@ router.get("/top10", async (req, res) => {
 // Average goals for a given year
 router.get("/averageGoals", async (req, res) => {
   const { year } = req.query;
+  // console.log(typeof year);
   try {
     const results = await FootballData.aggregate([
       { $match: { year: parseInt(year) } },

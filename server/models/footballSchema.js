@@ -9,7 +9,7 @@ const footballSchema = new mongoose.Schema({
   goalsFor: { type: Number, required: true },
   goalsAgainst: { type: Number, required: true },
   points: { type: Number, required: true },
-  year: { type: String, required: true },
+  year: { type: Number, required: true },
 });
 
-module.exports = mongoose.model("FootballData", footballSchema);
+module.exports = mongoose.model("FootballInfo", footballSchema);

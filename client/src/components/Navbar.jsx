@@ -32,12 +32,12 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="navbar-item">
-            <Link to="/records" className="navbar-link">
+            <Link to="/top10" className="navbar-link">
               Records
             </Link>
           </li>
           <li className="navbar-item">
-            <Link to="/avg-goals" className="navbar-link">
+            <Link to="/average-goals" className="navbar-link">
               Avg Goals
             </Link>
           </li>
